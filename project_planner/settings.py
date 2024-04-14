@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import sys, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +29,7 @@ DEBUG = False
 
 # ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -92,28 +92,33 @@ WSGI_APPLICATION = "project_planner.wsgi.application"
 #     }
 # }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "planner_cdn",  # Asegúrate de que el nombre sea el mismo que creaste
-#         "USER": "postgres",
-#         "PASSWORD": "root",
-#         "HOST": "localhost",  # o la IP si la base de datos no está en tu máquina local
-#         "PORT": "5432",
-#     }
-# }
-
-## PROD
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tracksuite_db',  # Nombre de tu base de datos
-        'USER': 'tracksuite_db_user',  # Tu usuario de base de datos
-        'PASSWORD': 'oWnxxeqZdqBcveR1KdBMl7UZDeBUncQB',  # La contraseña de tu base de datos
-        'HOST': 'dpg-coe2dqgl5elc7380t5o0-a',  # El nombre de host de tu instancia de base de datos
-        'PORT': '5432',  # El puerto de tu instancia de base de datos
+# Base de datos por defecto (desarrollo)
+if "test" in sys.argv or "test_coverage" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "planner_cdn",
+            "USER": "postgres",
+            "PASSWORD": "root",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
     }
-}
+
+# Configuración de base de datos para producción, detecta si está desplegando con Render u otro entorno de producción
+if (
+    "RENDER" in os.environ
+):  # o cualquier otra condición para detectar el entorno de producción
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "tracksuite_db",
+            "USER": "tracksuite_db_user",
+            "PASSWORD": "oWnxxeqZdqBcveR1KdBMl7UZDeBUncQB",
+            "HOST": "dpg-coe2dqgl5elc7380t5o0-a",
+            "PORT": "5432",
+        }
+    }
 
 
 AUTH_USER_MODEL = "usuarios_app.Usuario"
