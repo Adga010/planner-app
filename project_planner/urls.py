@@ -7,4 +7,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("usuarios_app.urls")),  # Asegúrate de tener esta línea
     path("api/", include("proyectos.urls")),  # Asegúrate de tener esta línea
+    path("api/", include("configuracion.urls")),  # Asegúrate de tener esta línea
+
 ]

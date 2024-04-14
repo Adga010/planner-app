@@ -24,9 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-1$d7wrejjyf^29z=!)+dy#=qn*wee!ikq*rpv_be_f7kihck(8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["0a1e-181-63-229-135.ngrok-free.app"]
+# ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -89,16 +92,29 @@ WSGI_APPLICATION = "project_planner.wsgi.application"
 #     }
 # }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "planner_cdn",  # Asegúrate de que el nombre sea el mismo que creaste
+#         "USER": "postgres",
+#         "PASSWORD": "root",
+#         "HOST": "localhost",  # o la IP si la base de datos no está en tu máquina local
+#         "PORT": "5432",
+#     }
+# }
+
+## PROD
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "planner_cdn",  # Asegúrate de que el nombre sea el mismo que creaste
-        "USER": "postgres",
-        "PASSWORD": "root",
-        "HOST": "localhost",  # o la IP si la base de datos no está en tu máquina local
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tracksuite_db',  # Nombre de tu base de datos
+        'USER': 'tracksuite_db_user',  # Tu usuario de base de datos
+        'PASSWORD': 'oWnxxeqZdqBcveR1KdBMl7UZDeBUncQB',  # La contraseña de tu base de datos
+        'HOST': 'dpg-coe2dqgl5elc7380t5o0-a',  # El nombre de host de tu instancia de base de datos
+        'PORT': '5432',  # El puerto de tu instancia de base de datos
     }
 }
+
 
 AUTH_USER_MODEL = "usuarios_app.Usuario"
 
