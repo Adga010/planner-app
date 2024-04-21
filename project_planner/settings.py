@@ -27,9 +27,9 @@ SECRET_KEY = "django-insecure-1$d7wrejjyf^29z=!)+dy#=qn*wee!ikq*rpv_be_f7kihck(8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
+# ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -93,32 +93,32 @@ WSGI_APPLICATION = "project_planner.wsgi.application"
 # }
 
 # Base de datos por defecto (desarrollo)
-if "test" in sys.argv or "test_coverage" in sys.argv:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "planner_cdn",
-            "USER": "postgres",
-            "PASSWORD": "root",
-            "HOST": "localhost",
-            "PORT": "5432",
-        }
+# if "test" in sys.argv or "test_coverage" in sys.argv:
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "planner_cdn",
+        "USER": "postgres",
+        "PASSWORD": "root",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
+}
 
 # Configuración de base de datos para producción, detecta si está desplegando con Render u otro entorno de producción
-if (
-    "RENDER" in os.environ
-):  # o cualquier otra condición para detectar el entorno de producción
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "tracksuite_db",
-            "USER": "tracksuite_db_user",
-            "PASSWORD": "oWnxxeqZdqBcveR1KdBMl7UZDeBUncQB",
-            "HOST": "dpg-coe2dqgl5elc7380t5o0-a",
-            "PORT": "5432",
-        }
-    }
+# if (
+#     "RENDER" in os.environ
+# ):  # o cualquier otra condición para detectar el entorno de producción
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": "tracksuite_db",
+#             "USER": "tracksuite_db_user",
+#             "PASSWORD": "oWnxxeqZdqBcveR1KdBMl7UZDeBUncQB",
+#             "HOST": "dpg-coe2dqgl5elc7380t5o0-a",
+#             "PORT": "5432",
+#         }
+#     }
 
 
 AUTH_USER_MODEL = "usuarios_app.Usuario"
