@@ -113,9 +113,9 @@ if (
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": "track_suite_db",
-            "USER": "track_suite_db_user",
+            "USER": "track__db_user",
             "PASSWORD": "svcoW4M6pmi2sw3i0zunWbQQ4p8AqAz3",
-            "HOST": "dpg-coiptv5jm4es739sosgg-a",
+            "HOST": "tracksuite-instance.cd0c862aupcl.us-east-2.rds.amazonaws.com",
             "PORT": "5432",
         }
     }
